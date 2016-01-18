@@ -16,6 +16,8 @@ app.post('/store', function (req, res) {
 		return false;
 	}
 
-	return res.send(cowsay.say({ text: req.body.text }));
+	var responseText = '```' + req.body.text + '```';
+
+	return res.send(cowsay.say({ text: responseText }));
 });
 
