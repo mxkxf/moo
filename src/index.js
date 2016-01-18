@@ -16,7 +16,10 @@ app.post('/', function (req, res) {
 		return res.send('');
 	}
 
-	var response = '```' + cowsay.say({ text: req.body.text }) + '```';
+	var eyes = req.body.e || req.body.eyes;
+	var tongue = req.body.T || req.body.tongue;
+
+	var response = '```' + cowsay.say({ text: req.body.text, e: eyes, T: tongue }) + '```';
 
 	return res.send(response);
 });
