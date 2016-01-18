@@ -13,11 +13,11 @@ app.listen(process.env.PORT || 3000);
 
 app.post('/store', function (req, res) {
 	if (req.body.token !== process.env.SLACK_TOKEN) {
-		return false;
+		return res.send('');
 	}
 
-	var responseText = '```' + req.body.text + '```';
+	var response = '```' + cowsay.say({ text: req.body.text }) + '```';
 
-	return res.send(cowsay.say({ text: responseText }));
+	return res.send(response);
 });
 
