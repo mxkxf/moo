@@ -1,0 +1,6 @@
+{
+  "name": "Moo",
+  "description": "Slack slash command for cowsay",
+  "repository": "https://github.com/mikefrancis/moo",
+  "keywords": ["node", "express", "slack", "cowsay"]
+}

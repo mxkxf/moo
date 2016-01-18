@@ -21,3 +21,6 @@ app.post('/store', function (req, res) {
 	return res.send(response);
 });
 
+app.all('*', function (req, res) {
+	return res.send("Error: Please check your Slash Command's Integration URL")
+});
