@@ -36,6 +36,8 @@ echo "SLACK_TOKEN=testSlackToken" >> .env
 npm install
 ```
 
+Test API keys for slack can be found at the [Slack Web API page](https://api.slack.com/web). You'll need to log in to your team Slack account to see them.
+
 Once installed, run `nodemon` to start the express server and watch for changes.
 
 To test, send a `POST` request to the index of the server containing the following `body`:
