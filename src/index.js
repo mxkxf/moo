@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(process.env.PORT || 3000);
 
-app.post('/store', function (req, res) {
+app.post('/', function (req, res) {
 	if (req.body.token !== process.env.SLACK_TOKEN) {
 		return res.send('');
 	}
