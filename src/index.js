@@ -29,5 +29,5 @@ app.post('/', function (req, res) {
 });
 
 app.all('*', function (req, res) {
-	return res.send("Error: Please check your Slash Command's Integration URL")
+	return res.status(400).send("Error: Please check your Slash Command's Integration URL");
 });
