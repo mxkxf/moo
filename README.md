@@ -1,5 +1,15 @@
 # moo
 
+An express wrapper for cowsay, so you can moo like you mean it in Slack.
+
+## Usage
+
+```
+/moo yoyoyo
+```
+
+Gives:
+
 ```
  ________
 < yoyoyo >
@@ -10,8 +20,6 @@
                 ||----w |
                 ||     ||
 ```
-
-An express wrapper for cowsay, so you can moo like you mean it in Slack.
 
 ## Installation
 
