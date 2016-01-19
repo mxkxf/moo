@@ -16,9 +16,12 @@ app.post('/', function (req, res) {
 		return res.send('');
 	}
 
-	var response = '```' + cowsay.say({ text: req.body.text }) + '```';
+	var responseText = '```' + cowsay.say({ text: req.body.text }) + '```';
 
-	return res.send(response);
+	return res.send({
+		response_type: 'in_channel',
+		text: responseText
+	});
 });
 
 app.all('*', function (req, res) {
