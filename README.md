@@ -1,5 +1,7 @@
 # moo
 
+[![Build Status](https://travis-ci.org/mikefrancis/moo.svg?branch=master)](https://travis-ci.org/mikefrancis/moo)
+
 An express wrapper for cowsay, so you can moo like you mean it in Slack.
 
 ## Usage
