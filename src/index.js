@@ -17,6 +17,11 @@ app.post('/', function (req, res) {
 			.send({ text: "Slack token is incorrect" });
 	}
 
+	if (!req.body.text) {
+		return res.status(400)
+			.send({ text: "No text provided" });
+	}
+
 	var responseText = '```' + cowsay.say({ text: req.body.text }) + '```';
 
 	return res.send({
