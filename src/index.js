@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var cowsay = require('cowsay');
 var env = require('dotenv');
 
-require('dotenv').load();
+require('dotenv').config({ silent: true });
 
 var app = express();
 
@@ -13,7 +13,8 @@ app.listen(process.env.PORT || 3000);
 
 app.post('/', function (req, res) {
 	if (req.body.token !== process.env.SLACK_TOKEN) {
-		return res.send('');
+		return res.status(400)
+			.send({ text: "Slack token is incorrect" });
 	}
 
 	var responseText = '```' + cowsay.say({ text: req.body.text }) + '```';
@@ -25,5 +26,8 @@ app.post('/', function (req, res) {
 });
 
 app.all('*', function (req, res) {
-	return res.send("Error: Please check your Slash Command's Integration URL")
+	return res.status(400)
+		.send({ text: "Error: Please check your Slash Command's Integration URL" });
 });
+
+module.exports = app;
