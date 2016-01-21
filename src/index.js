@@ -1,9 +1,8 @@
 require('dotenv').config({ silent: true });
 
-var app = require('express');
+var app = require('express')();
 var bodyParser = require('body-parser');
 var cowsay = require('cowsay');
-var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
