@@ -1,10 +1,8 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cowsay = require('cowsay');
-var env = require('dotenv');
-
 require('dotenv').config({ silent: true });
 
+var app = require('express');
+var bodyParser = require('body-parser');
+var cowsay = require('cowsay');
 var app = express();
 
 app.use(bodyParser.json());
