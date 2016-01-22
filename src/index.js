@@ -19,12 +19,11 @@ app.post('/', function (req, res) {
 			.send({ text: "No text provided" });
 	}
 
-	var responseText = '```' + cowsay.say({ text: req.body.text }) + '```';
+	var eyes = req.body.e || req.body.eyes;
+	var tongue = req.body.T || req.body.tongue;
 
-	return res.send({
-		response_type: 'in_channel',
-		text: responseText
-	});
+	var response = '```' + cowsay.say({ text: req.body.text, e: eyes, T: tongue }) + '```';
+	return res.send(response);
 });
 
 app.all('*', function (req, res) {
