@@ -1,9 +1,5 @@
 var request = require('supertest');
 require = require('really-need');
-var env = require('dotenv');
-require('dotenv').load();
-var given = require('mocha-testdata');
-
 
 String.prototype.format = function (placeholders) {
     var s = this;
@@ -18,7 +14,7 @@ var allParamsResponseTemplate = "``` ______________________\n< {text} >\n ------
 var textOnlyResponseTemplate = "``` ______________________\n< {text} >\n ----------------------\n        \\   ^__^\n         \\  ({eyes})\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||```";
 var correctToken = "test123";
 process.env.SLACK_TOKEN = correctToken;
-
+var resolvedArgv; // https://github.com/bahmutov/really-need/issues/17
 describe('loading server', function () {
     var server;
     beforeEach(function () {
@@ -38,7 +34,7 @@ describe('loading server', function () {
         request(server)
             .post("")
             .send(reqBody)
-            .expect(400, "Text should be sent together with token",  done);
+            .expect(400, '{"text":"No text provided"}',  done);
     });
 
     it("responds with 200 code and message when token and text are passed", function testCorrectToken(done) {
@@ -122,12 +118,12 @@ describe('loading server', function () {
         request(server)
             .post("")
             .send(reqBody)
-            .expect(200, "", done);
+            .expect(400, '{"text":"Slack token is incorrect"}', done);
     });
 
     it('responds incorrect request', function testSlash(done) {
         request(server)
             .get('/')
-            .expect(400, "Error: Please check your Slash Command's Integration URL", done);
+            .expect(400, '{"text":"Error: Please check your Slash Command\'s Integration URL"}', done);
     });
 });

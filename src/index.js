@@ -6,7 +6,7 @@ var cowsay = require('cowsay');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(process.env.PORT || 3000);
+var server = app.listen(process.env.PORT || 3000);
 
 app.post('/', function (req, res) {
 	if (req.body.token !== process.env.SLACK_TOKEN) {
@@ -31,4 +31,4 @@ app.all('*', function (req, res) {
 		.send({ text: "Error: Please check your Slash Command's Integration URL" });
 });
 
-module.exports = app;
+module.exports = server;
