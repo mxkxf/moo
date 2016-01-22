@@ -1,5 +1,4 @@
-var request = require('supertest');
-require = require('really-need');
+var supertest = require('supertest');
 
 String.prototype.format = function (placeholders) {
     var s = this;
@@ -14,15 +13,10 @@ var allParamsResponseTemplate = "``` ______________________\n< {text} >\n ------
 var textOnlyResponseTemplate = "``` ______________________\n< {text} >\n ----------------------\n        \\   ^__^\n         \\  ({eyes})\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||```";
 var correctToken = "test123";
 process.env.SLACK_TOKEN = correctToken;
-var resolvedArgv; // https://github.com/bahmutov/really-need/issues/17
+
 describe('loading server', function () {
-    var server;
-    beforeEach(function () {
-        server = require('../src/index', {bustCache: true});
-    });
-    afterEach(function (done) {
-        server.close(done);
-    });
+
+    var server = supertest.agent("http://localhost" + process.env.PORT || 3000);
 
     it("responds with 400 error message when text is not passed", function testCorrectToken(done) {
         var text = "";
@@ -30,11 +24,12 @@ describe('loading server', function () {
         var tongue = "";
 
 
-        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(400, '{"text":"No text provided"}',  done);
+            .expect(400, '{"text":"No text provided"}');
+        done();
     });
 
     it("responds with 200 code and message when token and text are passed", function testCorrectToken(done) {
@@ -42,11 +37,12 @@ describe('loading server', function () {
         var eyes = "";
         var tongue = "";
 
-        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, textOnlyResponseTemplate.format({text: text, eyes: "oo", tongue: tongue}), done);
+            .expect(200, textOnlyResponseTemplate.format({text: text, eyes: "oo", tongue: tongue}));
+        done();
     });
 
     it("responds with 200 code and message when token text and eyes are passed", function testCorrectToken(done) {
@@ -54,11 +50,12 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "";
 
-        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, textOnlyResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}), done);
+            .expect(200, textOnlyResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}));
+        done();
     });
 
     it("responds with 200 code and message when token text, eyes and tongue are passed", function testCorrectToken(done) {
@@ -66,11 +63,12 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "U";
 
-        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "e": eyes, "T": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}), done);
+            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}));
+        done();
     });
 
     it("responds with 200 code and message when token text, (alternative) eyes and tongue are passed", function testCorrectToken(done) {
@@ -78,11 +76,12 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "U";
 
-        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "T":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "T": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}), done);
+            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}));
+        done();
     });
 
     it("responds with 200 code and message when token text, eyes and (alternative) tongue are passed", function testCorrectToken(done) {
@@ -90,11 +89,12 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "U";
 
-        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "tongue":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "tongue": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}), done);
+            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}));
+        done();
     });
 
     it("responds with 200 code and message when token text, (alternative) eyes and (alternative) tongue are passed", function testCorrectToken(done) {
@@ -102,11 +102,12 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "U";
 
-        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "tongue":tongue};
-        request(server)
+        var reqBody = {"token": correctToken, "text": text, "eyes": eyes, "tongue": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}), done);
+            .expect(200, allParamsResponseTemplate.format({text: text, eyes: eyes, tongue: tongue}));
+        done();
     });
 
     it("should send an empty reposnse when token is incorrect", function testIncorrectToken(done) {
@@ -114,16 +115,18 @@ describe('loading server', function () {
         var eyes = "**";
         var tongue = "U";
 
-        var reqBody = {"token": "test", "text": text, "eyes": eyes, "tongue":tongue};
-        request(server)
+        var reqBody = {"token": "test", "text": text, "eyes": eyes, "tongue": tongue};
+        server
             .post("")
             .send(reqBody)
-            .expect(400, '{"text":"Slack token is incorrect"}', done);
+            .expect(400, '{"text":"Slack token is incorrect"}');
+        done();
     });
 
     it('responds incorrect request', function testSlash(done) {
-        request(server)
+        server
             .get('/')
-            .expect(400, '{"text":"Error: Please check your Slash Command\'s Integration URL"}', done);
+            .expect(400, '{"text":"Error: Please check your Slash Command\'s Integration URL"}');
+        done();
     });
 });
