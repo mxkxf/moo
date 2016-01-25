@@ -23,6 +23,41 @@ Gives:
                 ||     ||
 ```
 
+You can also use `eyes` and `tongue` parameters to even more customize your moo : 
+
+```bash
+/moo i’m very confmoosed [eyes Oo] 
+```
+
+Gives: 
+```bash
+ ______________________
+< i'm very confmoosed  >
+ ----------------------
+        \   ^__^
+         \  (Oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+```bash
+/moo i like to show my toungue [tongue U] [eyes **]
+```
+
+Gives : 
+
+```bash
+ ____________________________
+< i like to show my toungue  >
+ ----------------------------
+        \   ^__^
+         \  (**)\_______
+            (__)\       )\/\
+             U ||----w |
+                ||     ||
+```
+
 ## Installation
 
 ### Local
