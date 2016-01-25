@@ -1,9 +1,5 @@
 language: node_js
 
-scripts: {
-  test: "./node_modules/mocha/bin/mocha"
-}
-
 node_js:
     - "stable"
     - "iojs"
