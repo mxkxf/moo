@@ -21,8 +21,9 @@ app.post('/', function(req, res) {
 
   var eyes = parseArguments(req.body.text, 'eyes');
   var tongue = parseArguments(req.body.text, 'tongue');
+  var text = req.body.text.split('\[')[0];
 
-  var response = '```' + cowsay.say({ text: req.body.text, e: eyes, T: tongue }) + '```';
+  var response = '```' + cowsay.say({ text: text, e: eyes, T: tongue }) + '```';
 
   return res.send({
     response_type: 'in_channel',
