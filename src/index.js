@@ -36,7 +36,7 @@ function parseArguments(text, argumentName) {
     for (var i = 0; i < arguments.length; i++) {
       var arg = arguments[i];
       if (arg.split(' ')[0] === argumentName) {
-        return arg.substring(argumentName.length);
+        return arg.substring(argumentName.length).trim();
       }
     }
   }
