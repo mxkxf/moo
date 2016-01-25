@@ -18,13 +18,7 @@ describe('moo', function() {
 
   it('should send back a successful response for a Slack request with text, eyes and tongue', function(done) {
     request.post('/')
-        .send({ token: 'someToken', text: 'test', eyes: '**', T: 'U' })
-        .expect(200, done);
-  });
-
-  it('should send back a successful response for a Slack request', function(done) {
-    request.post('/')
-        .send({ token: 'someToken', text: 'test', e: '**', tongueT: 'U' })
+        .send({ token: 'someToken', text: 'test', eyes: '**', tongue: 'U' })
         .expect(200, done);
   });
 

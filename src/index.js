@@ -19,8 +19,8 @@ app.post('/', function(req, res) {
         .send({ text: 'No text provided' });
   }
 
-  var eyes = req.body.e || req.body.eyes;
-  var tongue = req.body.T || req.body.tongue;
+  var eyes = parseArguments(req.body.text, 'eyes');
+  var tongue = parseArguments(req.body.text, 'tongue');
 
   var response = '```' + cowsay.say({ text: req.body.text, e: eyes, T: tongue }) + '```';
 
@@ -29,6 +29,18 @@ app.post('/', function(req, res) {
     text: response,
   });
 });
+
+function parseArguments(text, argumentName) {
+  var arguments = text.match(/[^[\]]+(?=])/g);
+  if (arguments) {
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+      if (arg.split(' ')[0] === argumentName) {
+        return arg.substring(argumentName.length);
+      }
+    }
+  }
+}
 
 app.all('*', function(req, res) {
   return res.status(400)
