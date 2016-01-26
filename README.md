@@ -23,7 +23,7 @@ Gives:
                 ||     ||
 ```
 
-You can also use `eyes` and `tongue` parameters to even more customize your moo : 
+You can also use `eyes` and `tongue` parameters to customize your moo even more: 
 
 ```bash
 /moo i’m very confmoosed [eyes Oo] 
