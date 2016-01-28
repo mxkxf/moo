@@ -1,4 +1,5 @@
 require('dotenv').config({ silent: true });
+var fs = require('fs');
 
 var app = require('express')();
 var bodyParser = require('body-parser');
@@ -19,6 +20,14 @@ app.post('/', function(req, res) {
         .send({ text: 'No text provided' });
   }
 
+  if (req.body.text == 'help') {
+    var helpResponse = '```' + getHelpMessage() + '```';
+    return res.send({
+      response_type: 'in_channel',
+      text: helpResponse,
+    });
+  }
+
   var eyes = parseArguments(req.body.text, 'eyes');
   var tongue = parseArguments(req.body.text, 'tongue');
   var text = req.body.text.split('\[')[0];
@@ -30,6 +39,10 @@ app.post('/', function(req, res) {
     text: response,
   });
 });
+
+function getHelpMessage() {
+  return fs.readFileSync(__dirname + '/resources/help', 'utf8');
+}
 
 function parseArguments(text, argumentName) {
   var arguments = text.match(/[^[\]]+(?=])/g);

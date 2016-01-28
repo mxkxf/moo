@@ -1,0 +1,44 @@
+## Usage
+
+/moo [text message] [eyes] [tongue]
+
+Sending:
+/moo yoyoyo
+
+Gives:
+ ________
+< yoyoyo >
+ --------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+You can also use `eyes` and `tongue` parameters to customize your moo even more:
+
+/moo i’m very confmoosed [eyes Oo]
+
+Gives:
+
+ ______________________
+< i'm very confmoosed  >
+ ----------------------
+        \   ^__^
+         \  (Oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+
+/moo i like to show my tongue [tongue U] [eyes **]
+
+Gives :
+ ____________________________
+< i like to show my tongue  >
+ ----------------------------
+        \   ^__^
+         \  (**)\_______
+            (__)\       )\/\
+             U ||----w |
+                ||     ||
