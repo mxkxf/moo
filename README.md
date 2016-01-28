@@ -42,14 +42,14 @@ Gives:
 ```
 
 ```bash
-/moo i like to show my toungue [tongue U] [eyes **]
+/moo i like to show my tongue [tongue U] [eyes **]
 ```
 
 Gives : 
 
 ```bash
  ____________________________
-< i like to show my toungue  >
+< i like to show my tongue  >
  ----------------------------
         \   ^__^
          \  (**)\_______
