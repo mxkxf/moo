@@ -58,6 +58,13 @@ Gives :
                 ||     ||
 ```
 
+You can also look for a help, if you forgot options format : 
+```bash
+/moo help
+```
+
+Will give you a nice help message with examples of can you use `/moo` command
+
 ## Installation
 
 ### Local
