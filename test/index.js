@@ -27,7 +27,7 @@ describe('moo', function() {
   it('should send back message with help instructions when specific command is sent', function(done) {
     request.post('/')
         .send({ token: 'someToken', text: 'help' })
-        .expect(200, '{"response_type":"in_channel","text":"```## Usage\\n\\n/moo [text message] [eyes] [tongue]\\n\\nSending:\\n/moo yoyoyo\\n\\nGives:\\n ________\\n< yoyoyo >\\n --------\\n        \\\\   ^__^\\n         \\\\  (oo)\\\\_______\\n            (__)\\\\       )\\\\/\\\\\\n                ||----w |\\n                ||     ||\\n\\nYou can also use `eyes` and `tongue` parameters to customize your moo even more:\\n\\n/moo i’m very confmoosed [eyes Oo]\\n\\nGives:\\n\\n ______________________\\n< i\'m very confmoosed  >\\n ----------------------\\n        \\\\   ^__^\\n         \\\\  (Oo)\\\\_______\\n            (__)\\\\       )\\\\/\\\\\\n                ||----w |\\n                ||     ||\\n\\n\\n/moo i like to show my tongue [tongue U] [eyes **]\\n\\nGives :\\n ____________________________\\n< i like to show my tongue  >\\n ----------------------------\\n        \\\\   ^__^\\n         \\\\  (**)\\\\_______\\n            (__)\\\\       )\\\\/\\\\\\n             U ||----w |\\n                ||     ||```"}', done);
+        .expect(200, '{"response_type":"in_channel","text":"Usage: /moo {text_message} [eyes {eyes_value} [tongue {tongue_value}]]"}', done);
   });
 
   it('should error when no text is provided', function(done) {

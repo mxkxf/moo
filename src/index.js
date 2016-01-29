@@ -21,7 +21,7 @@ app.post('/', function(req, res) {
   }
 
   if (req.body.text == 'help') {
-    var helpResponse = '```' + getHelpMessage() + '```';
+    var helpResponse = 'Usage: /moo {text_message} [eyes {eyes_value} [tongue {tongue_value}]]';
     return res.send({
       response_type: 'in_channel',
       text: helpResponse,
@@ -39,10 +39,6 @@ app.post('/', function(req, res) {
     text: response,
   });
 });
-
-function getHelpMessage() {
-  return fs.readFileSync(__dirname + '/resources/help', 'utf8');
-}
 
 function parseArguments(text, argumentName) {
   var arguments = text.match(/[^[\]]+(?=])/g);
