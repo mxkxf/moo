@@ -2,8 +2,6 @@ process.env.SLACK_TOKEN = 'someToken';
 
 var app = require('./../src/index');
 var request = require('supertest')(app);
-var fs = require('fs');
-var path = require('path');
 
 describe('moo', function() {
   it('should send back a successful response for a Slack request with text only', function(done) {
