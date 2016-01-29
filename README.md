@@ -58,7 +58,7 @@ Gives :
                 ||     ||
 ```
 
-You can also look for a help, if you forgot options format : 
+Type the following to view usage options:: 
 ```bash
 /moo help
 ```
