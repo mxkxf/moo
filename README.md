@@ -58,13 +58,10 @@ Gives :
                 ||     ||
 ```
 
-Type the following to view usage options:: 
+Type the following to view usage options: 
 ```bash
 /moo help
 ```
-
-Will give you a nice help message with examples of can you use `/moo` command
-
 ## Installation
 
 ### Local
