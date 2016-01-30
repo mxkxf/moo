@@ -22,6 +22,12 @@ describe('moo', function() {
         .expect(200, done);
   });
 
+  it('should send back message with help instructions when specific command is sent', function(done) {
+    request.post('/')
+        .send({ token: 'someToken', text: 'help' })
+        .expect(200, '{"response_type":"in_channel","text":"Usage: /moo {text_message} [eyes {eyes_value} [tongue {tongue_value}]]"}', done);
+  });
+
   it('should error when no text is provided', function(done) {
     request.post('/')
         .send({ token: 'someToken' })

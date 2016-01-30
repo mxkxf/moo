@@ -19,6 +19,14 @@ app.post('/', function(req, res) {
         .send({ text: 'No text provided' });
   }
 
+  if (req.body.text == 'help') {
+    var helpResponse = 'Usage: /moo {text_message} [eyes {eyes_value} [tongue {tongue_value}]]';
+    return res.send({
+      response_type: 'in_channel',
+      text: helpResponse,
+    });
+  }
+
   var eyes = parseArguments(req.body.text, 'eyes');
   var tongue = parseArguments(req.body.text, 'tongue');
   var text = req.body.text.split('\[')[0];

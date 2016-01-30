@@ -58,6 +58,10 @@ Gives :
                 ||     ||
 ```
 
+Type the following to view usage options: 
+```bash
+/moo help
+```
 ## Installation
 
 ### Local
