@@ -1,22 +1,14 @@
 module.exports = {
   /**
-  	 * Parse arguments.
-  	 *
-  	 * @param  {string} text
-  	 * @param  {string} argumentName
-  	 * @return {string|null}
-  	 */
-  parseArguments: function(text, argumentName) {
-    var arguments = text.match(/[^[\]]+(?=])/g);
-
-    if (!arguments) {
-      return;
-    }
-
-    arguments.map(function(arg) {
-      if (arg.split(' ')[0] === argumentName) {
-        return arg.substring(argumentName.length).trim();
-      }
-    });
+   * Parse arguments.
+   *
+   * @param  {string} text
+   * @param  {string} argumentName
+   * @return {string|null}
+   */
+  getArgument: function(text, argumentName) {
+    let arguments = text.match(/[^[\]]+(?=])/g);
+    let value = arguments && arguments.find(arg => arg.split(' ')[0] === argumentName);
+    return value && value.split(' ')[1];
   },
 };

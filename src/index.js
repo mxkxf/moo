@@ -29,11 +29,20 @@ app.post('/', function(req, res) {
     });
   }
 
-  var eyes = parser.parseArguments(req.body.text, 'eyes');
-  var tongue = parser.parseArguments(req.body.text, 'tongue');
+  var eyes = parser.getArgument(req.body.text, 'eyes');
+  var tongue = parser.getArgument(req.body.text, 'tongue');
+  var mode = parser.getArgument(req.body.text, 'mode');  
   var text = req.body.text.split('\[')[0];
+  
+  var options = {
+    text: text,
+    e: eyes,
+    T: tongue
+  };
+  
+  options[mode] = true;
 
-  var responseText = '```' + cowsay.say({ text: text, e: eyes, T: tongue }) + '```';
+  var responseText = '```' + cowsay.say(options) + '```';
 
   return res.send({
     response_type: 'in_channel',
