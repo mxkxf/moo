@@ -8,7 +8,9 @@ module.exports = {
    */
   getArgument: function(text, argumentName) {
     let arguments = text.match(/[^[\]]+(?=])/g);
-    let value = arguments && arguments.find(arg => arg.split(' ')[0] === argumentName);
+    let value = arguments && arguments.find(function(arg){
+      return arg.split(' ')[0] === argumentName;
+    });
     return value && value.split(' ')[1];
   },
 };
